@@ -291,10 +291,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         {
             for(Action act : trad.getActions())
             {
-                
+                if(act.getIdAction() == Integer.parseInt(tblActions.getValueAt(tblActions.getSelectedRow(),0).toString()))
+                {
                     prixPotentiel = ((act.getValeurAction()) * act.getQuantiteAchatAction());
                     argentGagne = (act.getPrixAchatAction() * act.getQuantiteAchatAction());
                     valeurBenefice = prixPotentiel - argentGagne;
+                }
             }
         }
         
