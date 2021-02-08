@@ -381,7 +381,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     else if(nbEntre == quantiteDaction)
                     {
                         JOptionPane.showMessageDialog(this, "Vous avez vendu toutes vos actions");
-//                        v.clear(tblActions.getSelectedRow());
+//                        v.clear(tblActions.getSelectedRow());                 essayer de faire un boucle
                     }
                     else
                     {
