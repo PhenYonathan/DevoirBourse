@@ -284,6 +284,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         double prixTotal = 0;
         double prixTotalAction = 0;
         int quantiteAcheter = 0;
+        double prixTotalValeurAction = 0;
         
         for(Trader trad : mesTraders)
         {
@@ -293,11 +294,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 {
                     prixTotalAction = prixTotalAction + act.getPrixAchatAction();
                     quantiteAcheter = quantiteAcheter + act.getQuantiteAchatAction();
+                    
+                    prixTotalValeurAction = prixTotalValeurAction + act.getValeurAction();
                 }
             }
         }
         
         prixTotal = prixTotalAction * quantiteAcheter;
+        double argentPotentiel = prixTotalValeurAction * quantiteAcheter;
+        double argentFinal = (prixTotalAction - argentPotentiel);
+        
+        if(argentFinal > 0)
+        {
+            lblMessage.setText("Vous gagnez de l'argent sur cette action : " + String.valueOf(argentFinal));
+        }
+        else
+        {
+            lblMessage.setText("Vous perdez de l'argent sur cette action : " + String.valueOf(argentFinal));
+        }
         
     }//GEN-LAST:event_tblActionsMouseClicked
 
