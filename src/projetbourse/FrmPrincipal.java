@@ -382,10 +382,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     {
                         JOptionPane.showMessageDialog(this, "Vous avez vendu toutes vos actions");
 //                        v.clear(tblActions.getSelectedRow());                 essayer de faire un boucle
+
+
                     }
                     else
                     {
                         JOptionPane.showMessageDialog(this, "Vous avez vendu des actions");
+                        //Suprimer le nombre de nbEntre
+                        
+                        
                     }
                 }
             }
