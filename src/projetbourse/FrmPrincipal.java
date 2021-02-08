@@ -241,6 +241,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         double montantPortefeuille = 0;
         double valeurReel = 0;
         double valeurAcheter = 0;
+        double totalDesActions = 0;
         int qntAcheter = 0;
         
         while(tblActions.getRowCount()!=0)
@@ -265,20 +266,40 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 valeurReel = valeurReel + act.getValeurAction();
                 valeurAcheter = valeurAcheter + act.getPrixAchatAction();
                 qntAcheter = qntAcheter + act.getQuantiteAchatAction();
+                totalDesActions = totalDesActions + ((valeurReel * qntAcheter) - (valeurAcheter * qntAcheter));
+                
                 }
             }
         }
         
-        montantPortefeuille = ((valeurReel * qntAcheter) - (valeurAcheter * qntAcheter));
+//        montantPortefeuille = ((valeurReel * qntAcheter) - (valeurAcheter * qntAcheter));
         
-        JOptionPane.showMessageDialog(this, montantPortefeuille);
+//        Math.round(montantPortefeuille);
+        
+        lblPortefeuille.setText(String.valueOf(totalDesActions) + " euro");
     }//GEN-LAST:event_tblTradersMouseClicked
 
     private void tblActionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblActionsMouseClicked
         
         // A vous de jouer
         
+        double prixTotal = 0;
+        double prixTotalAction = 0;
+        int quantiteAcheter = 0;
         
+        for(Trader trad : mesTraders)
+        {
+            for(Action act : trad.getActions())
+            {
+                if(act.getIdAction() == Integer.parseInt(tblActions.getValueAt(tblActions.getSelectedRow(),0).toString()))
+                {
+                    prixTotalAction = prixTotalAction + act.getPrixAchatAction();
+                    quantiteAcheter = quantiteAcheter + act.getQuantiteAchatAction();
+                }
+            }
+        }
+        
+        prixTotal = prixTotalAction * quantiteAcheter;
         
     }//GEN-LAST:event_tblActionsMouseClicked
 
