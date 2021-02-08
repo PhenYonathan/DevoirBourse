@@ -239,10 +239,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         
         // A vous de jouer
         double montantPortefeuille = 0;
-        double valeurReel = 0;
-        double valeurAcheter = 0;
-        double totalDesActions = 0;
-        int qntAcheter = 0;
+//        double valeurReel = 0;
+//        double valeurAcheter = 0;
+//        double totalDesActions = 0;
+//        int qntAcheter = 0;
         
         while(tblActions.getRowCount()!=0)
         {
@@ -272,9 +272,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         
 //        montantPortefeuille = ((valeurReel * qntAcheter) - (valeurAcheter * qntAcheter));
         
-//        Math.round(montantPortefeuille);
+//        Math.round(String.valueOf(montantPortefeuille));
         
-        lblPortefeuille.setText(String.valueOf(montantPortefeuille) + " euro");
+        lblPortefeuille.setText(Math.round((montantPortefeuille)) + " euro");
     }//GEN-LAST:event_tblTradersMouseClicked
 
     private void tblActionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblActionsMouseClicked
@@ -300,14 +300,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         }
         
-        if(argentGagne < prixPotentiel)
+        if(argentGagne > prixPotentiel)
         {
 
-            lblMessage.setText("Vous perdez de l'argent sur cette action : " + valeurBenefice);
+            lblMessage.setText("Vous perdez de l'argent sur cette action : " + Math.round(valeurBenefice));
         }
         else
         {
-            lblMessage.setText("Vous gagnez de l'argent sur cette action : " + valeurBenefice);
+            lblMessage.setText("Vous gagnez de l'argent sur cette action : " + Math.round(valeurBenefice));
         }
         
         
@@ -356,7 +356,40 @@ public class FrmPrincipal extends javax.swing.JFrame {
         
         // A vous de jouer
         
+        int nbEntre = Integer.parseInt((txtQuantiteVendue).toString());
+        int quantiteDaction = 0;
         
+        if(txtQuantiteVendue.getText().compareTo("") == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Veuillez saisir un nombre d'action à vendre");
+        }
+        
+        double venteDeActions;
+        
+        for(Trader trad : mesTraders)
+        {
+            for(Action act : trad.getActions())
+            {
+                if(act.getIdAction() == Integer.parseInt(tblActions.getValueAt(tblActions.getSelectedRow(),0).toString()))
+                {
+                    quantiteDaction = quantiteDaction + act.getQuantiteAchatAction();
+
+                    if(nbEntre > quantiteDaction)
+                    {
+                        JOptionPane.showMessageDialog(this, "Vous ne pouvez pas vendre plus que ce que vous possédez");
+                    }
+                    else if(nbEntre == quantiteDaction)
+                    {
+                        JOptionPane.showMessageDialog(this, "Vous avez vendu toutes vos actions");
+//                        v.clear(tblActions.getSelectedRow());
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(this, "Vous avez vendu des actions");
+                    }
+                }
+            }
+        }
         
     }//GEN-LAST:event_btnVendreMouseClicked
 
