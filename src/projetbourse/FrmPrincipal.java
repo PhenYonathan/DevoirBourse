@@ -263,20 +263,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 v.add(act.getQuantiteAchatAction());
                 dtmActions.addRow(v);
                 
-                valeurReel = valeurReel + act.getValeurAction();
-                valeurAcheter = valeurAcheter + act.getPrixAchatAction();
-                qntAcheter = qntAcheter + act.getQuantiteAchatAction();
-                totalDesActions = totalDesActions + ((valeurReel * qntAcheter) - (valeurAcheter * qntAcheter));
+                montantPortefeuille = montantPortefeuille + (act.getValeurAction() * act.getQuantiteAchatAction() - (act.getPrixAchatAction() * act.getQuantiteAchatAction()));
                 
                 }
             }
         }
+       
         
 //        montantPortefeuille = ((valeurReel * qntAcheter) - (valeurAcheter * qntAcheter));
         
 //        Math.round(montantPortefeuille);
         
-        lblPortefeuille.setText(String.valueOf(totalDesActions) + " euro");
+        lblPortefeuille.setText(String.valueOf(montantPortefeuille) + " euro");
     }//GEN-LAST:event_tblTradersMouseClicked
 
     private void tblActionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblActionsMouseClicked
