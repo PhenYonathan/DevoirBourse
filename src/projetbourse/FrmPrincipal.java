@@ -281,43 +281,80 @@ public class FrmPrincipal extends javax.swing.JFrame {
         
         // A vous de jouer
         
-        double prixTotal = 0;
-        double prixTotalAction = 0;
-        int quantiteAcheter = 0;
-        double prixTotalValeurAction = 0;
+        double valeurBenefice = 0;
+        double prixPotentiel = 0;
+        double argentGagne = 0;
+        
+        lblMessage.setText("");
         
         for(Trader trad : mesTraders)
         {
             for(Action act : trad.getActions())
             {
-                if(act.getIdAction() == Integer.parseInt(tblActions.getValueAt(tblActions.getSelectedRow(),0).toString()))
-                {
-                    prixTotalAction = prixTotalAction + act.getPrixAchatAction();
-                    quantiteAcheter = quantiteAcheter + act.getQuantiteAchatAction();
-                    
-                    prixTotalValeurAction = prixTotalValeurAction + act.getValeurAction();
-                }
+                
+                    prixPotentiel = ((act.getValeurAction()) * act.getQuantiteAchatAction());
+                    argentGagne = (act.getPrixAchatAction() * act.getQuantiteAchatAction());
+                    valeurBenefice = prixPotentiel - argentGagne;
             }
         }
         
-        prixTotal = prixTotalAction * quantiteAcheter;
-        double argentPotentiel = prixTotalValeurAction * quantiteAcheter;
-        double argentFinal = (prixTotalAction - argentPotentiel);
-        
-        if(argentFinal > 0)
+        if(argentGagne < prixPotentiel)
         {
-            lblMessage.setText("Vous gagnez de l'argent sur cette action : " + String.valueOf(argentFinal));
+
+            lblMessage.setText("Vous perdez de l'argent sur cette action : " + valeurBenefice);
         }
         else
         {
-            lblMessage.setText("Vous perdez de l'argent sur cette action : " + String.valueOf(argentFinal));
+            lblMessage.setText("Vous gagnez de l'argent sur cette action : " + valeurBenefice);
         }
         
+        
+//        double prixTotal = 0;
+//        double prixTotalAction = 0;
+//        int quantiteAcheter = 0;
+//        double prixTotalValeurAction = 0;
+//        double argentPotentiel = 0;
+//        double argentFinal = 0;
+//        
+//        for(Trader trad : mesTraders)
+//        {
+//            for(Action act : trad.getActions())
+//            {
+//                if(act.getIdAction() == Integer.parseInt(tblActions.getValueAt(tblActions.getSelectedRow(),0).toString()))
+//                {
+//                    prixTotalAction = prixTotalAction + act.getPrixAchatAction();
+//                    quantiteAcheter = quantiteAcheter + act.getQuantiteAchatAction();
+//                    
+//                    prixTotalValeurAction = prixTotalValeurAction + act.getValeurAction();
+//                    prixTotal = prixTotalAction * quantiteAcheter;
+//                    argentPotentiel = prixTotalValeurAction * quantiteAcheter;
+//                }
+//            }
+//        }
+//        
+
+    //  Faute d'algo      
+
+//        argentFinal = (prixTotalAction - argentPotentiel);
+//        
+//        if(argentFinal > 0)
+//        {
+//            lblMessage.setText("Vous gagnez de l'argent sur cette action : " + String.valueOf(argentFinal));
+//        }
+//        else
+//        {
+//            lblMessage.setText("Vous perdez de l'argent sur cette action : " + String.valueOf(argentFinal));
+//        }
+//        
+//        
+//        
     }//GEN-LAST:event_tblActionsMouseClicked
 
     private void btnVendreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendreMouseClicked
         
         // A vous de jouer
+        
+        
         
     }//GEN-LAST:event_btnVendreMouseClicked
 
